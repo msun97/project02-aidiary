@@ -1,13 +1,19 @@
+'use client'
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import { HeaderWrap } from './style';
 
-const Header = () => {
+const Header: React.FC = () => {
+  const [isNav, setisNav] = useState(false);
   return (
-    <header>
-      <h1>EMOTOBY</h1>
+    <HeaderWrap>
+      <h1>EMOTOBY</h1>    
       <Image src="/logo.png" alt="emotoby" width={260} height={75} />
-      <nav>
+      {
+        isNav?
+        <nav>
+        <Image src="/times.png" alt="times" width={32} height={32} />
         <ul>
           <li>
             <Link href="/">메인 메뉴</Link>
@@ -22,10 +28,21 @@ const Header = () => {
             <Link href="/">추천 콘텐츠</Link>
           </li>
         </ul>
+        <div className='line'/>
+        <ul className='utilNav'>
+          <li>
+            설정
+          </li>
+          <li>
+            로그아웃
+          </li>
+        </ul>
       </nav>
+      :''
+      }
       <div className="util">
         <button>
-          <Image src="/hambuger.png" alt="emotoby" width={75} height={75} />
+          <Image src="/hambuger.png" alt="메뉴" width={75} height={75} />
         </button>
         <ul>
           <li>
@@ -36,7 +53,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-    </header>
+    </HeaderWrap>
   );
 };
 
